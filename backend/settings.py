@@ -152,6 +152,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -202,4 +203,15 @@ FIRBASE_SERVER_KEY = os.getenv('FIREBASE_SERVER_KEY')
 # )
 
 # SITE_ID = 1
+
+
+AWS_ACCESS_KEY_ID = 'AKIA3FLD2XVHLF3VZFFQ'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'playoff'
+AWS_S3_SIGNATURE_NAME = 's3v4'
+AWS_S3_REGION_NAME = 'ap-south-1'   
+AWS_S3_FILE_OVERWRITE = False
+AWS_DEFAULT_ACL =  None
+AWS_S3_VERITY = True
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
