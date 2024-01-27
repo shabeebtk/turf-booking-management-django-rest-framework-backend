@@ -165,6 +165,8 @@ AUTH_USER_MODEL = 'users.User'
 # cors headers 
 CORS_ALLOWED_ORIGINS = [
     "https://playoff-dusky.vercel.app",
+    "http://localhost:5173",
+    "https://playoff-dusky.vercel.app/"
 ]
 CORS_ALLOW_CREDENTIALS = True
 
