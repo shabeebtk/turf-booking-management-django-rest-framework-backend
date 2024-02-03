@@ -6,7 +6,7 @@ from app_admin.models import UserNotification
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'first_name', 'last_name', 'player_username', 'email', 'phone', 'password', 'is_active', 'profile_img', 'skill_level']
+        fields = ['id', 'first_name', 'last_name', 'player_username', 'email', 'phone', 'password', 'is_active', 'profile_img', 'skill_level', 'verified']
         extra_kwargs = {
             'password' : {'write_only' : True}
         }

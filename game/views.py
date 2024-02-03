@@ -179,7 +179,7 @@ class getHostUserGames(APIView):
         token = request.headers.get('Authorization')
         user = check_user_jwt(token)
         
-        games = UserGames.objects.filter(host_user_id=user).order_by('-id')
+        games = UserGames.objects.filter(host_user_id=user).order_by('id')
         serializer = GamesSerializer(games, many=True)
         return Response(serializer.data)
     
@@ -188,7 +188,7 @@ class getJoinedUserGames(APIView):
         token = request.headers.get('Authorization')
         user = check_user_jwt(token)
         
-        games = UserGames.objects.filter(gameusers__user_id=user).order_by('-id')
+        games = UserGames.objects.filter(gameusers__user_id=user).order_by('id')
         serializer = GamesSerializer(games, many=True)
         return Response(serializer.data)
     

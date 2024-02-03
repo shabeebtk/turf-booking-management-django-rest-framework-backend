@@ -72,6 +72,8 @@ class verify_email(APIView):
         
         if email and user_otp:
             user = User.objects.filter(email=email).first()
+            if not user:
+                return Response({'error' : 'email not found register again'}, status=status.HTTP_401_UNAUTHORIZED)
             email_otp = Otp.objects.filter(user_id=user, otp_type='email').first()
             
             if email_otp.otp == user_otp:
