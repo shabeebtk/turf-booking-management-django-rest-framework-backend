@@ -85,6 +85,36 @@ class verify_email(APIView):
                 return Response({'error' : 'incorrect otp'}, status=status.HTTP_401_UNAUTHORIZED)
         else:
             return Response({'error' : 'email not found register again'}, status=status.HTTP_401_UNAUTHORIZED)
+        
+        
+class SendEmailOtp(APIView):
+    def post(self, request):
+        email = request.data['email']
+        email_otp = str(random.randint(1000,9999))
+        
+        user = User.objects.filter(email=email).first()
+        if user is None:
+            return Response({'error' : 'email not registered'}, status=status.HTTP_401_UNAUTHORIZED)
+        
+        if user.verified:
+            return Response({'error' : 'email already verified'}, status=status.HTTP_409_CONFLICT)
+        
+        user_otp = Otp.objects.filter(user_id=user).first()
+            
+        if user_otp is None:
+            user_otp = Otp.objects.create(user_id=user, otp_type='email', otp=email_otp)
+            user_otp.save()
+        else:
+            user_otp.otp = email_otp
+            user_otp.save()
+        
+        subject = 'PLAYOFF REGISTER VERIFICATION'
+        message = f'hi this your otp {email_otp} use your OTP to verify the registration'
+        from_email = settings.EMAIL_HOST_USER
+        email_to = [email]
+        send_mail(subject, message, from_email, email_to, fail_silently=False)
+        return Response({'message' : 'otp send to your email'})
+        
             
     
 class Login(APIView):

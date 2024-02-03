@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import GetUser, Register, verify_email, Login, UserLogout, SendOtp, ChangePassword, SaveFCMToken, getBookings, CancelBooking, startRazorpayment, handle_payment_success, getUserNotification, UpdateUserProfile, OtpChangeEmail, ChangeEmail, SentOtpChangePassword, UserChangePassword, UserChangeProfile, check_username
+from .views import GetUser, Register, verify_email, Login, UserLogout, SendOtp, ChangePassword, SaveFCMToken, getBookings, CancelBooking, startRazorpayment, handle_payment_success, getUserNotification, UpdateUserProfile, OtpChangeEmail, ChangeEmail, SentOtpChangePassword, UserChangePassword, UserChangeProfile, check_username, SendEmailOtp
 
 urlpatterns = [
     path('get_user', GetUser.as_view()),
@@ -23,6 +23,7 @@ urlpatterns = [
     path('confirm_change_password', UserChangePassword.as_view()),
     path('change_user_profile', UserChangeProfile.as_view()),
     path('check_username', check_username.as_view()),
+    path('send_email_otp', SendEmailOtp.as_view()),
     
 ]
 
