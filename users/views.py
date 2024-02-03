@@ -144,7 +144,7 @@ class Login(APIView):
 
         response.data =  {
             'jwt' : token,
-            'message' : 'login success'
+            'message' : 'login success',
         }
         return response
             
